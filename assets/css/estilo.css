@@ -758,8 +758,7 @@ form.form-cadastro button:hover {
 }
 
 .grid article {
-  background: url("../Imagens/bg-grid-article.webp")
-    center;
+  background: url("../Imagens/bg-grid-article.webp") center;
   border-radius: 12px;
   padding: 30px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
