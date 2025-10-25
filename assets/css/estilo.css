@@ -153,13 +153,12 @@ header h1,
 /* Menu Hamburguer */
 .hamburger-menu {
   display: none;
-  background: var(--color-primary);
-  border: var(--border-width-thick) solid var(--color-white);
+  background: #00796b;
   color: var(--color-white);
   font-size: var(--font-size-xl);
   cursor: pointer;
   padding: var(--spacing-sm) var(--spacing-md);
-  z-index: 1000;
+  z-index: 500;
   border-radius: var(--border-radius-sm);
   transition: all var(--transition-base);
   box-shadow: var(--shadow-md);
@@ -167,18 +166,18 @@ header h1,
   position: absolute;
   right: var(--spacing-sm);
   top: 100%;
-  transform: translateY(-70%);
+  transform: translateY(-120%);
 }
 
 .hamburger-menu:hover {
-  background: var(--color-primary-dark);
+  background: #00796b;
   transform: scale(1.05);
   box-shadow: var(--shadow-lg);
 }
 
 .hamburger-menu.active {
-  background: var(--color-success-dark);
-  transform: rotate(90deg);
+  background: #00796b;
+  /* transform: rotate(90deg); */
   box-shadow: var(--shadow-sm);
 }
 
