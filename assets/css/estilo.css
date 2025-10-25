@@ -2,12 +2,87 @@
    ESTILO GERAL UNIFICADO — ONG CONEXÃO SOLIDÁRIA
 ===================================================== */
 
+/* ======== DESIGN SYSTEM ======== */
+:root {
+  /* Cores Principais */
+  --color-primary: #04a52c;
+  --color-primary-dark: #038024;
+  --color-primary-light: #2beb65;
+  --color-secondary: #4a2810;
+  --color-secondary-dark: #2b1810;
+
+  /* Cores de Estado */
+  --color-success: #03923a;
+  --color-success-dark: #027920;
+  --color-info: #0077b6;
+  --color-info-dark: #005f8a;
+  --color-warning: #f59e0b;
+  --color-error: #dc2626;
+
+  /* Cores Neutras */
+  --color-white: #fff;
+  --color-black: #000;
+  --color-gray-100: #f1f5f9;
+  --color-gray-200: #e0e0e0;
+  --color-gray-300: #ccc;
+  --color-gray-400: #999;
+  --color-gray-500: #666;
+  --color-gray-600: #333;
+
+  /* Tipografia */
+  --font-family-base: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem; /* 36px */
+
+  /* Espaçamentos */
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem; /* 8px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+  --spacing-2xl: 3rem; /* 48px */
+
+  /* Bordas e Sombras */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-width: 1px;
+  --border-width-thick: 2px;
+
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.3);
+
+  /* Breakpoints */
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+
+  /* Layout */
+  --container-padding: 1rem;
+  --container-max-width: 1200px;
+  --header-height: 60px;
+  --footer-height: 80px;
+
+  /* Transições */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
 /* ======== ESTILO GERAL ======== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-family-base);
 }
 
 html {
@@ -47,7 +122,7 @@ header,
 header .container,
 .site-header .container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   position: relative;
   padding: 0 15px;
@@ -78,38 +153,42 @@ header h1,
 /* Menu Hamburguer */
 .hamburger-menu {
   display: none;
-  background: #04a52c;
-  border: 2px solid #fff;
-  color: #fff;
-  font-size: 1.4rem;
+  background: var(--color-primary);
+  border: var(--border-width-thick) solid var(--color-white);
+  color: var(--color-white);
+  font-size: var(--font-size-xl);
   cursor: pointer;
-  padding: 6px 10px;
+  padding: var(--spacing-sm) var(--spacing-md);
   z-index: 1000;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
   margin: 0;
-  align-self: center;
+  position: absolute;
+  right: var(--spacing-sm);
+  top: 100%;
+  transform: translateY(-70%);
 }
 
 .hamburger-menu:hover {
-  background: #038024;
+  background: var(--color-primary-dark);
   transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-lg);
 }
 
 .hamburger-menu.active {
-  background: #026b1e;
+  background: var(--color-success-dark);
   transform: rotate(90deg);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow-sm);
 }
 
 @media (max-width: 768px) {
   header .container,
   .site-header .container {
     justify-content: center;
-    padding: 0 15px;
+    padding: 0 20px 0 15px;
     flex-wrap: nowrap;
+    position: relative;
   }
 
   .hamburger-menu {
@@ -252,48 +331,48 @@ header h1,
 .btn-secondary,
 .btn-link {
   display: inline-block;
-  padding: 10px 20px;
-  border-radius: 8px;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--border-radius-md);
   text-decoration: none;
   font-weight: 600;
-  transition: 0.3s ease;
+  transition: var(--transition-base);
+  font-size: var(--font-size-base);
 }
 
 .btn-primary {
-  background: url("https://img.freepik.com/free-photo/brown-wooden-textured-flooring-background_53876-128862.jpg")
-    center;
-  color: #fff;
-  border: 2px solid #4a2810;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: var(--border-width-thick) solid var(--color-primary-dark);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .btn-primary:hover {
-  background-color: #4a2810;
+  background: var(--color-primary-dark);
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-secondary {
-  background: rgba(74, 40, 16, 0.8);
-  color: #fff;
-  margin-left: 10px;
-  border: 2px solid #2b1810;
+  background: var(--color-secondary);
+  color: var(--color-white);
+  margin-left: var(--spacing-sm);
+  border: var(--border-width-thick) solid var(--color-secondary-dark);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .btn-secondary:hover {
-  background: rgba(74, 40, 16, 1);
+  background: var(--color-secondary-dark);
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-link {
-  color: #004aad;
+  color: var(--color-info);
   text-decoration: underline;
 }
 
 .btn-link:hover {
-  color: #003580;
+  color: var(--color-info-dark);
 }
 
 /* ======== FORMULÁRIOS ======== */
@@ -729,6 +808,7 @@ form.form-cadastro button:hover {
 
 .slides img:hover {
   transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes slide {
@@ -776,22 +856,26 @@ audio {
 
 /* ======== GALERIA ======== */
 .gallery {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
-  justify-content: center;
+  padding: 1rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .gallery img {
-  width: 300px;
-  height: 200px;
+  width: 100%;
+  height: 250px;
   border-radius: 10px;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gallery img:hover {
   transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* ======== GRÁFICOS ======== */
@@ -854,6 +938,24 @@ footer .social-icons a {
 
 footer .social-icons a:hover {
   color: #01c722;
+}
+
+/* ======== REGRAS GERAIS PARA IMAGENS ======== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Ajustes para imagens em cards e artigos */
+.card img,
+article img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
 }
 
 /* ======== RESPONSIVIDADE ======== */
@@ -944,6 +1046,19 @@ footer .social-icons a:hover {
 }
 
 @media (max-width: 480px) {
+  /* Ajustes de imagens */
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery img {
+    height: 180px;
+  }
+
+  .slider {
+    height: 250px;
+  }
+
   /* Ajustes gerais */
   .container {
     width: 95%;
