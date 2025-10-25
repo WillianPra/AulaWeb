@@ -1,0 +1,128 @@
+/* ======== VARIÁVEIS GLOBAIS ======== */
+:root {
+  /* Breakpoints */
+  --mobile: 480px;
+  --tablet: 768px;
+  --desktop: 1024px;
+
+  /* Cores principais */
+  --cor-primaria: #04a52c;
+  --cor-secundaria: #ffb703;
+  --cor-destaque: #0077b6;
+  --cor-fundo: #f7f0f0;
+  --cor-texto: #333;
+  --cor-clara: #fff;
+
+  /* Gradientes e sombras */
+  --gradiente-principal: linear-gradient(90deg, #f5c542, #f7d96e);
+  --sombra-padrao: 0 2px 6px rgba(0, 0, 0, 0.15);
+
+  /* Tipografia */
+  --fonte-principal: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --peso-normal: 400;
+  --peso-bold: 700;
+
+  /* Espaçamento e bordas */
+  --espaco-pequeno: 8px;
+  --espaco-medio: 16px;
+  --espaco-grande: 32px;
+  --borda-arredondada: 10px;
+}
+
+/* ======== CLASSES UTILITÁRIAS ======== */
+
+/* Espaçamentos */
+.mt-1 {
+  margin-top: var(--espaco-pequeno);
+}
+.mt-2 {
+  margin-top: var(--espaco-medio);
+}
+.mt-3 {
+  margin-top: var(--espaco-grande);
+}
+
+.mb-1 {
+  margin-bottom: var(--espaco-pequeno);
+}
+.mb-2 {
+  margin-bottom: var(--espaco-medio);
+}
+.mb-3 {
+  margin-bottom: var(--espaco-grande);
+}
+
+.p-1 {
+  padding: var(--espaco-pequeno);
+}
+.p-2 {
+  padding: var(--espaco-medio);
+}
+.p-3 {
+  padding: var(--espaco-grande);
+}
+
+/* Centralização */
+.text-center {
+  text-align: center;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Cores rápidas */
+.bg-primaria {
+  background-color: var(--cor-primaria);
+  color: var(--cor-clara);
+}
+.bg-secundaria {
+  background-color: var(--cor-secundaria);
+  color: var(--cor-texto);
+}
+.bg-destaque {
+  background-color: var(--cor-destaque);
+  color: var(--cor-clara);
+}
+
+.text-primaria {
+  color: var(--cor-primaria);
+}
+.text-secundaria {
+  color: var(--cor-secundaria);
+}
+.text-destaque {
+  color: var(--cor-destaque);
+}
+
+/* Botão padrão do sistema */
+.btn-system {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  background-color: var(--cor-secundaria);
+  color: var(--cor-texto);
+  border: 2px solid #f1b800;
+}
+
+.btn-system:hover {
+  background-color: #ffd84d;
+  transform: scale(1.05);
+}
+
+/* Cards reutilizáveis */
+.card-system {
+  background: var(--cor-clara);
+  border-radius: var(--borda-arredondada);
+  box-shadow: var(--sombra-padrao);
+  padding: var(--espaco-medio);
+  transition: transform 0.3s ease;
+}
+
+.card-system:hover {
+  transform: translateY(-5px);
+}
