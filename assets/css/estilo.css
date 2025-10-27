@@ -946,6 +946,25 @@ img {
   margin: 0 auto;
 }
 
+textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  font-size: 1rem;
+  resize: horizontal;
+  resize: vertical;
+  min-height: 140px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+textarea:focus {
+  border-color: #0077b6;
+  box-shadow: 0 0 5px rgba(0, 119, 182, 0.3);
+  outline: none;
+}
+
 /* Ajustes para imagens em cards e artigos */
 .card img,
 article img {
