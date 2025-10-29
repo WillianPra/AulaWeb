@@ -239,32 +239,73 @@
 
             <div class="form-group">
               <label for="disponibilidade">Disponibilidade</label>
-              <div class="checkbox-group">
-                <label>
-                  <input type="checkbox" name="dias" value="segunda" />
+              <div
+                class="checkbox-group"
+                role="group"
+                aria-labelledby="disponibilidade"
+              >
+                <label for="dia-segunda">
+                  <input
+                    type="checkbox"
+                    id="dia-segunda"
+                    name="dias"
+                    value="segunda"
+                  />
                   Segunda-feira
                 </label>
-                <label>
-                  <input type="checkbox" name="dias" value="terca" />
+                <label for="dia-terca">
+                  <input
+                    type="checkbox"
+                    id="dia-terca"
+                    name="dias"
+                    value="terca"
+                  />
                   Terça-feira
                 </label>
-                <label>
-                  <input type="checkbox" name="dias" value="quarta" />
+                <label for="dia-quarta">
+                  <input
+                    type="checkbox"
+                    id="dia-quarta"
+                    name="dias"
+                    value="quarta"
+                  />
                   Quarta-feira
                 </label>
-                <label>
-                  <input type="checkbox" name="dias" value="quinta" />
+                <label for="dia-quinta">
+                  <input
+                    type="checkbox"
+                    id="dia-quinta"
+                    name="dias"
+                    value="quinta"
+                  />
                   Quinta-feira
                 </label>
-                <label>
-                  <input type="checkbox" name="dias" value="sexta" />
+                <label for="dia-sexta">
+                  <input
+                    type="checkbox"
+                    id="dia-sexta"
+                    name="dias"
+                    value="sexta"
+                  />
                   Sexta-feira
                 </label>
-                <label>
-                  <input type="checkbox" name="dias" value="sabado" /> Sábado
+                <label for="dia-sabado">
+                  <input
+                    type="checkbox"
+                    id="dia-sabado"
+                    name="dias"
+                    value="sabado"
+                  />
+                  Sábado
                 </label>
-                <label>
-                  <input type="checkbox" name="dias" value="domingo" /> Domingo
+                <label for="dia-domingo">
+                  <input
+                    type="checkbox"
+                    id="dia-domingo"
+                    name="dias"
+                    value="domingo"
+                  />
+                  Domingo
                 </label>
               </div>
             </div>
@@ -292,8 +333,8 @@
               <i class="fas fa-file-contract"></i> Termos e Condições
             </legend>
             <div class="form-group">
-              <label class="checkbox-container">
-                <input type="checkbox" name="termos" required />
+              <label for="termos" class="checkbox-container">
+                <input type="checkbox" id="termos" name="termos" required />
                 <span class="required"
                   >Li e aceito os termos de voluntariado e política de
                   privacidade</span
@@ -301,14 +342,19 @@
               </label>
             </div>
             <div class="form-group">
-              <label class="checkbox-container">
-                <input type="checkbox" name="newsletter" />
+              <label for="newsletter" class="checkbox-container">
+                <input type="checkbox" id="newsletter" name="newsletter" />
                 Desejo receber novidades e atualizações por e-mail
               </label>
             </div>
           </fieldset>
 
-          <div id="mensagemErro" class="mensagem-erro"></div>
+          <div
+            id="mensagemErro"
+            class="mensagem-erro"
+            role="alert"
+            aria-live="polite"
+          ></div>
 
           <div class="form-actions">
             <button type="submit">

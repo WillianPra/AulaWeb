@@ -27,8 +27,12 @@
       <div class="container">
         <h1 class="brand">Conexão Solidária</h1>
         <nav class="menu-principal" aria-label="Menu Principal">
-          <button class="hamburger-menu" aria-label="Abrir menu" aria-expanded="false">
-              <i class="fas fa-bars" aria-hidden="true"></i>
+          <button
+            class="hamburger-menu"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+          >
+            <i class="fas fa-bars" aria-hidden="true"></i>
           </button>
           <ul class="menu">
             <li>
@@ -125,16 +129,41 @@
             <!-- Informações da Doação -->
             <fieldset>
               <legend>Valor da Doação</legend>
-              <div class="amounts">
-                <button type="button" class="btn-valor" data-amount="25">
+              <div
+                class="amounts"
+                role="group"
+                aria-label="Selecione o valor da doação"
+              >
+                <button
+                  type="button"
+                  class="btn-valor"
+                  data-amount="25"
+                  aria-pressed="false"
+                  aria-label="Doar 25 reais"
+                >
                   R$ 25
                 </button>
-                <button type="button" class="btn-valor" data-amount="50">
+                <button
+                  type="button"
+                  class="btn-valor"
+                  data-amount="50"
+                  aria-pressed="false"
+                  aria-label="Doar 50 reais"
+                >
                   R$ 50
                 </button>
-                <button type="button" class="btn-valor" data-amount="100">
+                <button
+                  type="button"
+                  class="btn-valor"
+                  data-amount="100"
+                  aria-pressed="false"
+                  aria-label="Doar 100 reais"
+                >
                   R$ 100
                 </button>
+                <label for="customAmount" class="sr-only"
+                  >Outro valor em reais</label
+                >
                 <input
                   id="customAmount"
                   type="number"
@@ -142,23 +171,34 @@
                   placeholder="Outro valor"
                   class="input-outro-valor"
                   title="Digite um valor maior que zero"
+                  aria-label="Digite outro valor de doação em reais"
                 />
               </div>
 
               <div class="form-group">
                 <label>Frequência da doação:</label>
-                <div class="opcoes-frequencia">
-                  <label class="radio-label">
+                <div
+                  class="opcoes-frequencia"
+                  role="radiogroup"
+                  aria-label="Frequência da doação"
+                >
+                  <label class="radio-label" for="freq-unica">
                     <input
                       type="radio"
+                      id="freq-unica"
                       name="frequencia"
                       value="unica"
                       checked
                     />
                     Única
                   </label>
-                  <label class="radio-label">
-                    <input type="radio" name="frequencia" value="mensal" />
+                  <label class="radio-label" for="freq-mensal">
+                    <input
+                      type="radio"
+                      id="freq-mensal"
+                      name="frequencia"
+                      value="mensal"
+                    />
                     Mensal
                   </label>
                 </div>
@@ -168,37 +208,97 @@
             <!-- Forma de Pagamento -->
             <fieldset>
               <legend>Forma de Pagamento</legend>
-              <div class="methods">
-                <div class="method" data-method="cartao">
-                  <i class="fas fa-credit-card"></i>
+              <div
+                class="methods"
+                role="radiogroup"
+                aria-label="Selecione a forma de pagamento"
+              >
+                <button
+                  type="button"
+                  class="method"
+                  data-method="cartao"
+                  role="radio"
+                  aria-checked="false"
+                  aria-label="Pagar com cartão de crédito"
+                >
+                  <i class="fas fa-credit-card" aria-hidden="true"></i>
                   Cartão
-                </div>
-                <div class="method" data-method="boleto">
-                  <i class="fas fa-barcode"></i>
+                </button>
+                <button
+                  type="button"
+                  class="method"
+                  data-method="boleto"
+                  role="radio"
+                  aria-checked="false"
+                  aria-label="Pagar com boleto bancário"
+                >
+                  <i class="fas fa-barcode" aria-hidden="true"></i>
                   Boleto
-                </div>
-                <div class="method selected" data-method="pix">
-                  <i class="fas fa-qrcode"></i>
+                </button>
+                <button
+                  type="button"
+                  class="method selected"
+                  data-method="pix"
+                  role="radio"
+                  aria-checked="true"
+                  aria-label="Pagar com PIX"
+                >
+                  <i class="fas fa-qrcode" aria-hidden="true"></i>
                   Pix
-                </div>
+                </button>
               </div>
             </fieldset>
 
             <div class="actions">
-              <button class="btn btn-primary" type="button" id="botaoPix">
-                <i class="fas fa-heart"></i> Confirmar Doação
+              <button
+                class="btn btn-primary"
+                type="button"
+                id="botaoPix"
+                aria-describedby="mensagemErro"
+              >
+                <i class="fas fa-heart" aria-hidden="true"></i> Confirmar Doação
               </button>
 
+              <!-- Mensagem de erro -->
+              <div
+                id="mensagemErro"
+                class="mensagem-erro"
+                role="alert"
+                aria-live="assertive"
+                style="display: none"
+              ></div>
+
               <!-- Mensagens de feedback -->
-              <div id="mensagemPix" class="mensagem-sucesso">
+              <div
+                id="mensagemPix"
+                class="mensagem-sucesso"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+                style="display: none"
+              >
                 ✅ PIX realizado com sucesso! 💚<br />
                 Muito obrigado pela sua ajuda!
               </div>
-              <div id="mensagemBoleto" class="mensagem-sucesso">
+              <div
+                id="mensagemBoleto"
+                class="mensagem-sucesso"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+                style="display: none"
+              >
                 🧾 Boleto gerado com sucesso!<br />
                 Verifique seu e-mail para receber as instruções.
               </div>
-              <div id="mensagemCartao" class="mensagem-sucesso">
+              <div
+                id="mensagemCartao"
+                class="mensagem-sucesso"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+                style="display: none"
+              >
                 💳 Redirecionando para o pagamento seguro...<br />
                 Por favor, aguarde.
               </div>
@@ -208,10 +308,15 @@
         </section>
 
         <!-- CARD RESUMO -->
-        <aside class="card card-resumo">
-          <h2>Resumo</h2>
+        <aside class="card card-resumo" aria-live="polite" aria-atomic="true">
+          <h2>Resumo da Doação</h2>
           <div class="summary">
-            Nome: <span id="sumNome" class="muted">—</span><br />
+            <strong>Nome:</strong> <span id="sumNome" class="muted">—</span
+            ><br />
+            <strong>Valor:</strong> <span id="sumValor" class="muted">—</span
+            ><br />
+            <strong>Método:</strong>
+            <span id="sumMetodo" class="muted">PIX</span>
           </div>
         </aside>
       </div>

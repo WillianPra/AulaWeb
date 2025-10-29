@@ -298,7 +298,7 @@ header h1,
     url("https://images.unsplash.com/photo-1497493292307-31c376b6e479?auto=format&fit=crop&w=1600&q=80");
   background-size: cover;
   background-position: center;
-  color: #036132;
+  color: #ffffff;
   text-align: center;
   padding: 100px 20px;
   border-radius: 0 0 10px 10px;
@@ -408,9 +408,10 @@ form.form-cadastro input {
 input:focus,
 textarea:focus,
 form.form-cadastro input:focus {
-  border-color: #080c0e;
-  box-shadow: 0 0 5px rgba(0, 119, 182, 0.3);
-  outline: none;
+  border-color: #0077b6;
+  box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.3);
+  outline: 2px solid #0077b6;
+  outline-offset: 2px;
 }
 
 button,
@@ -429,6 +430,66 @@ button:hover,
 form.form-cadastro button:hover {
   background-color: #005f8a;
 }
+
+/* Estilos de foco para botões e links */
+button:focus,
+form.form-cadastro button:focus,
+a:focus,
+.btn-primary:focus,
+.btn-secondary:focus {
+  outline: 2px solid #0077b6;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.3);
+}
+
+.menu li a:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.hamburger-menu:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+/* Classe para leitores de tela (Screen Reader Only) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Estilos para mensagens de erro */
+.mensagem-erro {
+  color: #dc2626;
+  background-color: #fee;
+  border: 2px solid #dc2626;
+  padding: 12px;
+  border-radius: 6px;
+  margin: 10px 0;
+  font-weight: 600;
+  display: none;
+}
+
+.mensagem-sucesso {
+  display: none;
+  color: #027920;
+  background-color: #d1f7c4;
+  border: 2px solid #027920;
+  padding: 12px;
+  border-radius: 6px;
+  margin: 10px 0;
+  font-weight: 600;
+}
+
 /* =====================================================
    CONEXÃO SOLIDÁRIA — Página de Doações (versão otimizada)
 ===================================================== */
@@ -553,7 +614,8 @@ input[type="number"] {
 
 input:focus {
   border-color: #00796b;
-  outline: none;
+  outline: 2px solid #00796b;
+  outline-offset: 2px;
 }
 
 /* ======= VALORES E MÉTODOS ======= */
@@ -575,6 +637,8 @@ input:focus {
   color: #00796b;
   cursor: pointer;
   transition: 0.3s;
+  font-family: inherit;
+  font-size: 1rem;
 }
 
 .btn-valor:hover,
@@ -582,6 +646,23 @@ input:focus {
 .method.selected {
   background: #00796b;
   color: #fff;
+}
+
+/* Estilos de foco para botões de valor e métodos */
+.btn-valor:focus,
+.method:focus {
+  outline: 2px solid #00796b;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(0, 121, 107, 0.3);
+}
+
+/* Estado selecionado com indicação ARIA */
+.btn-valor[aria-pressed="true"],
+.method[aria-checked="true"] {
+  background: #00796b;
+  color: #fff;
+  border-color: #004d40;
+  font-weight: bold;
 }
 
 /* ======= BOTÕES ======= */
@@ -707,8 +788,9 @@ form.form-cadastro input:focus,
 form.form-cadastro textarea:focus,
 form.form-cadastro select:focus {
   border-color: #0077b6;
-  box-shadow: 0 0 5px rgba(0, 119, 182, 0.3);
-  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.3);
+  outline: 2px solid #0077b6;
+  outline-offset: 2px;
 }
 
 form.form-cadastro button {
@@ -773,7 +855,7 @@ form.form-cadastro button:hover {
 }
 
 .grid h4 {
-  color: #05ca47;
+  color: #027920;
   margin-bottom: 10px;
 }
 
@@ -884,7 +966,7 @@ audio {
 
 .charts h3 {
   text-align: center;
-  color: #05e62a;
+  color: #027920;
   margin-bottom: 2rem;
   font-size: 1.8em;
 }
@@ -961,8 +1043,9 @@ textarea {
 
 textarea:focus {
   border-color: #0077b6;
-  box-shadow: 0 0 5px rgba(0, 119, 182, 0.3);
-  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.3);
+  outline: 2px solid #0077b6;
+  outline-offset: 2px;
 }
 
 /* Ajustes para imagens em cards e artigos */

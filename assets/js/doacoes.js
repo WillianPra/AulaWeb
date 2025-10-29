@@ -17,14 +17,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Máscara para o telefone
   const inputTelefone = document.getElementById("telefone");
-  
+
   function aplicarMascaraTelefone(telefone) {
     // Remove tudo que não é número
     let valor = telefone.replace(/\D/g, "");
-    
+
     // Limita a 11 dígitos
     valor = valor.substring(0, 11);
-    
+
     // Aplica a máscara
     if (valor.length > 0) {
       valor = "(" + valor;
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         valor = valor.substring(0, 10) + "-" + valor.substring(10);
       }
     }
-    
+
     return valor;
   }
 
@@ -43,22 +43,22 @@ document.addEventListener("DOMContentLoaded", function () {
   function validarTelefone(telefone) {
     // Se o campo estiver vazio, retorna true pois é opcional
     if (!telefone) return true;
-    
+
     // Remove todos os caracteres não numéricos
     const numeroLimpo = telefone.replace(/\D/g, "");
-    
+
     // Verifica se tem 10 ou 11 dígitos (com ou sem 9)
     return numeroLimpo.length === 10 || numeroLimpo.length === 11;
   }
 
   // Evento para aplicar máscara no telefone
-  inputTelefone.addEventListener("input", function(e) {
+  inputTelefone.addEventListener("input", function (e) {
     let cursorPos = this.selectionStart;
     const valorAntes = this.value;
     const valorDepois = aplicarMascaraTelefone(this.value);
-    
+
     this.value = valorDepois;
-    
+
     // Mantém o cursor na posição correta
     if (valorDepois.length > valorAntes.length) {
       cursorPos++;
@@ -76,10 +76,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Função para limpar seleção de valores
   function limparSelecaoValores() {
-    botoesValor.forEach((btn) => btn.classList.remove("selected"));
+    botoesValor.forEach((btn) => {
+      btn.classList.remove("selected");
+      btn.setAttribute("aria-pressed", "false");
+    });
     inputValorPersonalizado.value = "";
     valorSelecionado = 0;
-    atualizarBotaoConfirmar(); // Atualiza texto do botão ao limpar
+    atualizarBotaoConfirmar();
+    atualizarResumo();
   }
 
   // Função para validar o formulário
@@ -88,18 +92,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const email = document.getElementById("email").value;
     const telefone = document.getElementById("telefone").value;
     const valor = valorSelecionado || Number(inputValorPersonalizado.value);
+    const mensagemErro = document.getElementById("mensagemErro");
+
+    // Limpa mensagem de erro anterior
+    mensagemErro.textContent = "";
+    mensagemErro.style.display = "none";
 
     if (!nome || !email || !valor || valor <= 0) {
-      alert(
-        "Por favor, preencha todos os campos obrigatórios e selecione um valor válido."
-      );
+      mensagemErro.textContent =
+        "Por favor, preencha todos os campos obrigatórios e selecione um valor válido.";
+      mensagemErro.style.display = "block";
+      mensagemErro.focus(); // Foca na mensagem de erro
       return false;
     }
 
     if (telefone && !validarTelefone(telefone)) {
-      alert(
-        "Por favor, insira um número de telefone válido no formato (00) 00000-0000"
-      );
+      mensagemErro.textContent =
+        "Por favor, insira um número de telefone válido no formato (00) 00000-0000";
+      mensagemErro.style.display = "block";
+      mensagemErro.focus(); // Foca na mensagem de erro
       return false;
     }
 
@@ -109,37 +120,65 @@ document.addEventListener("DOMContentLoaded", function () {
   // Eventos para botões de valor
   botoesValor.forEach((botao) => {
     botao.addEventListener("click", function () {
-      if (estadoPagamento.processando) return; // Evita mudança durante processamento
+      if (estadoPagamento.processando) return;
 
-      botoesValor.forEach((btn) => btn.classList.remove("selected"));
-      inputValorPersonalizado.value = ""; // Limpa input personalizado
+      // Remove seleção dos outros botões
+      botoesValor.forEach((btn) => {
+        btn.classList.remove("selected");
+        btn.setAttribute("aria-pressed", "false");
+      });
 
+      inputValorPersonalizado.value = "";
+
+      // Seleciona este botão
       this.classList.add("selected");
+      this.setAttribute("aria-pressed", "true");
       valorSelecionado = Number(this.dataset.amount);
-      atualizarBotaoConfirmar(); // Atualiza texto do botão com o novo valor
+
+      atualizarBotaoConfirmar();
+      atualizarResumo();
     });
   });
 
   // Evento para input de valor personalizado
   inputValorPersonalizado.addEventListener("input", function () {
-    if (estadoPagamento.processando) return; // Evita mudança durante processamento
+    if (estadoPagamento.processando) return;
 
-    botoesValor.forEach((btn) => btn.classList.remove("selected"));
+    botoesValor.forEach((btn) => {
+      btn.classList.remove("selected");
+      btn.setAttribute("aria-pressed", "false");
+    });
+
     valorSelecionado = Number(this.value);
-    atualizarBotaoConfirmar(); // Atualiza texto do botão com o novo valor
+    atualizarBotaoConfirmar();
+    atualizarResumo();
   });
 
   // Eventos para métodos de pagamento
   metodosPagamento.forEach((metodo) => {
+    // Suporte a clique
     metodo.addEventListener("click", function () {
-      if (estadoPagamento.processando) return; // Evita mudança durante processamento
+      if (estadoPagamento.processando) return;
 
-      metodosPagamento.forEach((m) => m.classList.remove("selected"));
+      metodosPagamento.forEach((m) => {
+        m.classList.remove("selected");
+        m.setAttribute("aria-checked", "false");
+      });
+
       this.classList.add("selected");
+      this.setAttribute("aria-checked", "true");
       metodoPagamentoAtual = this.dataset.method;
 
-      // Atualiza texto do botão
       atualizarBotaoConfirmar();
+      atualizarResumo();
+    });
+
+    // Suporte a teclado (Enter e Space)
+    metodo.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        this.click();
+      }
     });
   });
 
@@ -156,8 +195,29 @@ document.addEventListener("DOMContentLoaded", function () {
         valorSelecionado ? formatarMoeda(valorSelecionado) : ""
       }`,
     };
-    botaoConfirmar.textContent = textos[metodoPagamentoAtual];
+    botaoConfirmar.innerHTML = `<i class="fas fa-heart" aria-hidden="true"></i> ${textos[metodoPagamentoAtual]}`;
   }
+
+  // Função para atualizar o resumo
+  function atualizarResumo() {
+    const nome = document.getElementById("nome").value;
+    const valor = valorSelecionado || Number(inputValorPersonalizado.value);
+
+    document.getElementById("sumNome").textContent = nome || "—";
+    document.getElementById("sumValor").textContent =
+      valor > 0 ? formatarMoeda(valor) : "—";
+
+    const metodoNomes = {
+      pix: "PIX",
+      cartao: "Cartão de Crédito",
+      boleto: "Boleto Bancário",
+    };
+    document.getElementById("sumMetodo").textContent =
+      metodoNomes[metodoPagamentoAtual];
+  }
+
+  // Atualiza resumo quando nome muda
+  document.getElementById("nome").addEventListener("input", atualizarResumo);
 
   // Função para esconder todas as mensagens
   function esconderMensagens() {
@@ -211,10 +271,24 @@ document.addEventListener("DOMContentLoaded", function () {
     .querySelector('button[type="reset"]')
     .addEventListener("click", function () {
       limparSelecaoValores();
-      metodosPagamento.forEach((m) => m.classList.remove("selected"));
-      document.querySelector('[data-method="pix"]').classList.add("selected");
+
+      metodosPagamento.forEach((m) => {
+        m.classList.remove("selected");
+        m.setAttribute("aria-checked", "false");
+      });
+
+      const pixMetodo = document.querySelector('[data-method="pix"]');
+      pixMetodo.classList.add("selected");
+      pixMetodo.setAttribute("aria-checked", "true");
+
       metodoPagamentoAtual = "pix";
       atualizarBotaoConfirmar();
-      esconderMensagens(); // Esconde todas as mensagens ao limpar
+      atualizarResumo();
+      esconderMensagens();
+
+      // Limpa mensagem de erro
+      const mensagemErro = document.getElementById("mensagemErro");
+      mensagemErro.textContent = "";
+      mensagemErro.style.display = "none";
     });
 });

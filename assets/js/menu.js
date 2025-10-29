@@ -55,6 +55,22 @@ document.addEventListener("DOMContentLoaded", () => {
       hamburger.setAttribute("aria-expanded", !isExpanded);
     });
 
+    // Suporte a teclado para o botão hamburguer
+    hamburger.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        hamburger.click();
+      }
+    });
+
+    // Fechar menu com a tecla ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && navLinks.classList.contains("active")) {
+        closeMenu();
+        hamburger.focus(); // Retorna o foco ao botão
+      }
+    });
+
     // Fechar menu ao clicar em um link
     menuItems.forEach((item) => {
       item.addEventListener("click", (e) => {

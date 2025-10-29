@@ -132,11 +132,28 @@ document.addEventListener("DOMContentLoaded", function () {
         if (mensagensErro.length > 0) {
           msgDiv.textContent = mensagensErro.join(", ");
           msgDiv.style.display = "block";
+          msgDiv.setAttribute("role", "alert");
+          msgDiv.setAttribute("aria-live", "assertive");
         } else {
           msgDiv.textContent = "";
           msgDiv.style.display = "none";
-          alert("Cadastro enviado com sucesso!");
-          this.reset();
+
+          // Cria mensagem de sucesso acessível
+          const sucessoDiv = document.createElement("div");
+          sucessoDiv.textContent = "Cadastro enviado com sucesso!";
+          sucessoDiv.setAttribute("role", "alert");
+          sucessoDiv.setAttribute("aria-live", "polite");
+          sucessoDiv.style.color = "green";
+          sucessoDiv.style.fontWeight = "bold";
+          sucessoDiv.style.padding = "10px";
+          sucessoDiv.style.marginTop = "10px";
+
+          form.insertAdjacentElement("beforeend", sucessoDiv);
+
+          setTimeout(() => {
+            sucessoDiv.remove();
+            this.reset();
+          }, 3000);
         }
       }
     });
