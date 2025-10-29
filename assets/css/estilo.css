@@ -490,6 +490,25 @@ a:focus,
   font-weight: 600;
 }
 
+/* Classe de erro para inputs */
+.erro {
+  border-color: red !important;
+}
+
+/* Container de gráficos e visualizações */
+.charts-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.charts-grid-single {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 /* =====================================================
    CONEXÃO SOLIDÁRIA — Página de Doações (versão otimizada)
 ===================================================== */
@@ -646,6 +665,21 @@ input:focus {
 .method.selected {
   background: #00796b;
   color: #fff;
+}
+
+/* Botões desabilitados */
+.method:disabled {
+  background: #e0e0e0;
+  color: #999;
+  cursor: not-allowed;
+  opacity: 0.6;
+  border-color: #ccc;
+}
+
+.method:disabled:hover {
+  background: #e0e0e0;
+  color: #999;
+  transform: none;
 }
 
 /* Estilos de foco para botões de valor e métodos */

@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
   metodosPagamento.forEach((metodo) => {
     // Suporte a clique
     metodo.addEventListener("click", function () {
-      if (estadoPagamento.processando) return;
+      if (estadoPagamento.processando || this.disabled) return;
 
       metodosPagamento.forEach((m) => {
         m.classList.remove("selected");
@@ -177,7 +177,9 @@ document.addEventListener("DOMContentLoaded", function () {
     metodo.addEventListener("keydown", function (e) {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        this.click();
+        if (!this.disabled) {
+          this.click();
+        }
       }
     });
   });
@@ -226,6 +228,28 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("mensagemCartao").style.display = "none";
   }
 
+  // Função para gerar QR Code PIX
+  function gerarQRCodePix(valor, nome) {
+    const qrcodeContainer = document.getElementById("qrcode");
+
+    // Limpa QR Code anterior
+    qrcodeContainer.innerHTML = "";
+
+    // Gera chave PIX fictícia para demonstração
+    const chavePix = "conexaosolidaria@pix.com.br";
+    const mensagem = `Doação de ${formatarMoeda(valor)} - ${nome}`;
+
+    // Cria o QR Code
+    new QRCode(qrcodeContainer, {
+      text: `PIX|${chavePix}|${valor}|${mensagem}`,
+      width: 200,
+      height: 200,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H,
+    });
+  }
+
   // Inicializar escondendo todas as mensagens
   esconderMensagens();
 
@@ -244,6 +268,13 @@ document.addEventListener("DOMContentLoaded", function () {
     botaoConfirmar.textContent = "Processando...";
 
     setTimeout(() => {
+      // Se for PIX, gera o QR Code
+      if (metodoPagamentoAtual === "pix") {
+        const nome = document.getElementById("nome").value;
+        const valor = valorSelecionado || Number(inputValorPersonalizado.value);
+        gerarQRCodePix(valor, nome);
+      }
+
       // Mostrar mensagem apropriada
       const elementoMensagem = document.getElementById(
         `mensagem${
@@ -259,10 +290,10 @@ document.addEventListener("DOMContentLoaded", function () {
       botaoConfirmar.disabled = false;
       atualizarBotaoConfirmar();
 
-      // Esconder mensagem após 5 segundos
+      // Esconder mensagem após 30 segundos (para dar tempo de escanear o QR)
       setTimeout(() => {
         esconderMensagens();
-      }, 5000);
+      }, 30000);
     }, 2000);
   });
 
