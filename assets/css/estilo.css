@@ -165,13 +165,13 @@ header h1,
   margin: 0;
   position: absolute;
   right: var(--spacing-sm);
-  top: 100%;
-  transform: translateY(-120%);
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .hamburger-menu:hover {
   background: #00796b;
-  transform: scale(1.05);
+  transform: translateY(-50%) scale(1.05);
   box-shadow: var(--shadow-lg);
 }
 
@@ -229,10 +229,6 @@ header h1,
     display: flex;
     opacity: 1;
     transform: translateY(0);
-  }
-
-  .menu.active {
-    display: flex;
   }
 
   .menu li {
