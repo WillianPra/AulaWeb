@@ -50,6 +50,7 @@ Todos os direitos reservados à ONG Conexão Solidária © 2025.
 🌐 Conheça o Projeto
 
 [🔗 Clique AQUI.
-[([https://github.com/WillianPra/AulaWeb/blob/main/meu-projeto/index.html)](https://aula-web-five.vercel.app/index.html)]
+https://aula-web-five.vercel.app/index.html
+
 
 
